@@ -35,46 +35,43 @@ NO
 '''
 n = int(input())
 if n % 4 == 0:
-        set1 = ""
-        set2 = ""
+        set1 = []
+        set2 = []
         print("YES")
         maxN = n
         minN = 1
-        mid = maxN//2
-        while(n):
-            if n <= mid:
-                set2 += " " + str(minN) + " " + str(maxN)
+        mid = maxN//4
+        for i in range(1, n+1):
+            if i <= mid or i > 3*mid:
+                set1.append(str(i))
             else:
-                set1 += " " + str(minN) + " " + str(maxN)
-            n -= 2
-            minN += 1
-            maxN -= 1
-        print(mid)
-        print(set1.lstrip())
-        print(mid)
-        print(set2.lstrip())
+                set2.append(str(i))
+        print(2 * mid)
+        print(" ".join(set1))
+        print(2 * mid)
+        print(" ".join(set2))
 
 elif n % 4 == 3:
-    set1 = ""
+    set1 = []
     n1 = 0
-    set2 = ""
+    set2 = []
     n2 = 0
     for i in range(3, n+4, 4):
         if i == 3:
-            set1 = "1 2"
-            n1 += 2
-            set2 = "3"
-            n2 += 1
+            set1.append(str(1))
+            set1.append(str(2))
+            set2.append(str(3))
         else:
             r =  i - 4
-            set1 += " " + str(r+1) + " " + str(r+4)
-            set2 += " " + str(r+2) + " " + str(r+3)
-            n1 += 2
-            n2 += 2
+            set1.append(str(r+1))
+            set1.append(str(r+4))
+            set2.append(str(r+2))
+            set2.append(str(r+3))
+
     print("YES")
-    print(n1)
-    print(set1)
-    print(n2)
-    print(set2)
+    print(len(set1))
+    print(" ".join(set1))
+    print(len(set2))
+    print(" ".join(set2))
 else:
     print("NO")
